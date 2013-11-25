@@ -17,3 +17,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 add_subdirectory(libhersheyfont)
 add_subdirectory(tools)
 
+## tests
+foreach(jhf ${jhf_files})
+    add_test("${jhf}" ${CMAKE_BINARY_DIR}/tools/hershey-font-check "${jhf}")
+endforeach(jhf)
+
