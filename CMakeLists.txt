@@ -15,4 +15,5 @@ install(FILES ${jhf_files}	DESTINATION share/hershey-fonts)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 
 add_subdirectory(libhersheyfont)
+add_subdirectory(tools)
 
