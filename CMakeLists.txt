@@ -12,3 +12,7 @@ enable_testing()
 file(GLOB jhf_files "hershey-fonts/*.jhf")
 install(FILES ${jhf_files}	DESTINATION share/hershey-fonts)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+
+add_subdirectory(libhersheyfont)
+
