@@ -16,4 +16,4 @@ target_link_libraries(hershey-font-check	hersheyfont)
 add_executable(hershey-font-gnuplot		hershey-font-gnuplot.c)
 target_link_libraries(hershey-font-gnuplot	hersheyfont)
 install(TARGETS hershey-font-gnuplot		DESTINATION bin)
-
+install(FILES hershey-font-gnuplot.1		DESTINATION share/man/man1)

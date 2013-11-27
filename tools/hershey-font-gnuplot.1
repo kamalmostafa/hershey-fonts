@@ -1,0 +1,123 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" (C) Copyright 2013 Kamal Mostafa <kamal@whence.com>,
+.\"
+.\" other parameters are allowed: see man(7), man(1)
+.TH HERSHEY-FONT-GNUPLOT 1 "27 November 2013"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+
+.nh
+
+.SH NAME
+hershey-font-gnuplot \- Hershey vector fonts renderer for gnuplot
+.SH SYNOPSIS
+.P
+.B hershey-font-gnuplot
+.RI [ options ] " font" " 'Text to Render'"
+.br
+.P
+.B hershey-font-gnuplot
+.RI [ options ] " font" "
+
+.SH DESCRIPTION
+.P
+The Hershey fonts are a collection of vector fonts developed circa 1967
+by Dr. A. V. Hershey.
+.P
+\fBhershey-font-gnuplot\fP renders Hershey font text in the form of
+a \fBgnuplot\fP input file.
+Its output must be piped to \fBgnuplot\fP
+as shown in the EXAMPLES section below.
+.P
+If no 'Text to Render' is specified, a font sample sheet displaying
+all the font's glyphs will be generated.
+
+.SH FONTS
+.P
+The \fIfont\fP parameter must be the name of a system-installed
+Hershey font or the filename of a Hershey font \fI.jhf\fP file.
+The Hershey fonts likely to be installed are:
+.PP
+.BR astrology ,
+.BR cursive ,
+.BR cyrillic ,
+.BR futural ,
+.BR futuram ,
+.BR gothgbt ,
+.BR gothgrt ,
+.BR gothiceng ,
+.BR gothicger ,
+.BR gothicita ,
+.BR gothitt ,
+.BR greekc ,
+.BR greek ,
+.BR greeks ,
+.BR japanese ,
+.BR markers ,
+.BR mathlow ,
+.BR mathupp ,
+.BR meteorology ,
+.BR music ,
+.BR rowmand ,
+.BR rowmans ,
+.BR rowmant ,
+.BR scriptc ,
+.BR scripts ,
+.BR symbolic ,
+.BR timesg ,
+.BR timesib ,
+.BR timesi ,
+.BR timesrb ,
+.BR timesr
+
+.SH OPTIONS
+
+.TP
+.BI \-T " 'gnuplot_terminal_type [gnuplot_terminal_opts]'"
+Set gnuplot output type and options, for example:
+.br
+  \fB-T pdf\fP
+.br
+  \fB-T png\fP
+.br
+  \fB-T 'png crop transparent'\fP
+.br
+See \fBgnuplot\fP's \fIset terminal\fP command for more output type options.
+If not specified, an X11 window display (\fIwxt\fP) is selected.
+
+.TP
+.BI \-h " font_height"
+Set the font height in pixels (default 100).
+
+.SH EXAMPLES
+.nf
+.ad l
+.P
+hershey-font-gnuplot japanese | gnuplot -p
+.P
+hershey-font-gnuplot futural   'Hello World!' | gnuplot -p
+.P
+hershey-font-gnuplot gothiceng 'Calligraphy'  | gnuplot -p
+.P
+hershey-font-gnuplot -T 'png crop' scriptc 'Nice Text' | gnuplot > out.png
+.fi
+.ad b
+
+.SH SEE ALSO
+.BR gnuplot (1)
+
+.SH AUTHOR
+.B hershey-font-gnuplot
+was written by Kamal Mostafa <kamal@whence.com>.
+
+.br
