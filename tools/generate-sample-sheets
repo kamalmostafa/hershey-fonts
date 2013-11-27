@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# generate-sample-sheets - Copyright (C) 2013 Kamal Mostafa <kamal@whence.com>
+#
+# License: GPL-2+
+#
+
+set -e
+
+[ $# -eq 1 ] || {
+    echo "usage: tools/generate-sample-sheets ./hershey-fonts/" 1>&2
+    exit 1
+}
+
+HERSHEY_FONTS_DIR="$1"
+SAMPLES_DIR="hershey-font-samples"
+
+HERSHEY_FONT_GNUPLOT="tools/hershey-font-gnuplot"
+
+[ -x $HERSHEY_FONT_GNUPLOT ] || {
+    echo "cannot find $HERSHEY_FONT_GNUPLOT (run from src root dir)" 1>&2
+    exit 1
+}
+
+mkdir -p "$SAMPLES_DIR"
+
+html="samples.html"
+
+for font in $HERSHEY_FONTS_DIR/*.jhf
+do
+    fontname="${font##*/}"
+    fontname="${fontname%%.jhf}"
+
+    samplesheet="$SAMPLES_DIR/$fontname.png"
+    echo "generating $samplesheet" 1>&2
+    $HERSHEY_FONT_GNUPLOT -T png $font \
+		| gnuplot > "$samplesheet"
+
+    preview="$SAMPLES_DIR/$fontname-preview.png"
+    echo "generating $preview" 1>&2
+    $HERSHEY_FONT_GNUPLOT -T 'png crop' $font 'ABCdef@#$123' \
+		| gnuplot > "$preview"
+
+    echo "<A HREF=\"$samplesheet\">"
+    echo "<SMALL>$fontname</SMALL><BR>"
+    echo "<IMG SRC=\"$preview\"></A><BR><BR>"
+
+done > "$html"
+echo "generated: $html" 1>&2
+
+
