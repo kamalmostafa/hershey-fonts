@@ -1,0 +1,57 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: hershey-fonts
+Upstream-Contact: Kamal Mostafa <kamal@whence.com>
+Source: http://www.whence.com/hershey-fonts/
+
+Files: *
+Copyright: 2013 Kamal Mostafa <kamal@whence.com>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2013 Kamal Mostafa <kamal@whence.com>
+License: GPL-2+
+
+Files: hershey-fonts/*.jhf
+Copyright: 1967 Dr. A. V. Hershey, James Hurt
+Comment: downloaded from http://emergent.unpythonic.net/software/hershey
+License: hershey-license
+ This distribution of the Hershey Fonts may be used by anyone for
+ any purpose, commercial or otherwise, providing that:
+ 	1. The following acknowledgements must be distributed with
+ 		the font data:
+ 		- The Hershey Fonts were originally created by Dr.
+ 			A. V. Hershey while working at the U. S.
+ 			National Bureau of Standards.
+ 		- The format of the Font data in this distribution
+ 			was originally created by
+ 				James Hurt
+ 				Cognition, Inc.
+ 				900 Technology Park Drive
+ 				Billerica, MA 01821
+ 				(mit-eddie!ci-dandelion!hurt)
+ 	2. The font data in this distribution may be converted into
+ 		any other format *EXCEPT* the format distributed by
+ 		the U.S. NTIS (which organization holds the rights
+ 		to the distribution and use of the font data in that
+ 		particular format). Not that anybody would really
+ 		*want* to use their format... each point is described
+ 		in eight bytes as "xxx yyy:", where xxx and yyy are
+ 		the coordinate values as ASCII numbers.
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+

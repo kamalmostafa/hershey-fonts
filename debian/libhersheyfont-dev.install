@@ -1,0 +1,7 @@
+usr/include/*
+usr/lib/lib*.a
+usr/lib/lib*.so
+#usr/lib/pkgconfig/*
+#usr/share/pkgconfig/*
+usr/share/doc/libhersheyfont/examples/*
+usr/share/man/man3/*
