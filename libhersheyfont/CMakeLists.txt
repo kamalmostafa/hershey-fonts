@@ -28,3 +28,22 @@ target_link_libraries(hershey-font-example	hersheyfont)
 install(FILES hershey-font-example.c
 				DESTINATION share/doc/libhersheyfont/examples)
 
+add_custom_target(libhersheyfont.3 ALL
+    COMMAND ${CMAKE_COMMAND} -E
+	copy ${CMAKE_CURRENT_SOURCE_DIR}/libhersheyfont.3 libhersheyfont.3
+    DEPENDS libhersheyfont.3
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libhersheyfont.3
+						DESTINATION share/man/man3)
+
+set(manpage_symlinks	hershey_font_load.3 hershey_font_jhf_load.3 hershey_font_free.3 hershey_font_glyph.3 )
+
+foreach(manpage ${manpage_symlinks})
+    add_custom_target(${manpage} ALL
+	COMMAND ${CMAKE_COMMAND} -E create_symlink libhersheyfont.3 ${manpage}
+	DEPENDS libhersheyfont.3
+    )
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${manpage}
+						DESTINATION share/man/man3)
+endforeach(manpage)
+

@@ -1,0 +1,129 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" (C) Copyright 2013 Kamal Mostafa <kamal@whence.com>,
+.\"
+.\" other parameters are allowed: see man(7), man(1)
+.TH LIBHERSHEYFONT 3 "2 December 2013"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+
+.nh
+
+.SH NAME
+libhersheyfont \- Hershey vector fonts library
+.SH SYNOPSIS
+.P
+.ad l
+.P
+.B #include <hersheyfont.h>
+.P
+.BI "struct hershey_font *hershey_font_load(const char *" "fontname" );
+.br
+.BI "struct hershey_font *hershey_jhf_font_load(const char *" "jhffile" );
+.sp
+.HP
+.BI "struct hershey_glyph *hershey_font_glyph(struct hershey_font *" "hf" ", unsigned char " "c" );
+.P
+.BI "void hershey_font_free(struct hershey_font *" "hf" );
+.ad b
+
+.SH DESCRIPTION
+.P
+The Hershey fonts are a collection of vector fonts developed circa 1967
+by Dr. A. V. Hershey.
+\fBlibhersheyfont\fP provides C routines to load and process .jhf format
+Hershey font files.
+.P
+A Hershey font may be loaded with
+.BR herhsey_font_load ()
+or
+.BR herhsey_font_jhf_load (),
+either of which returns a pointer to a newly
+allocated \fBstruct hershey_font\fP.
+This structure should be freed after use with a call to
+.BR herhsey_font_free ().
+.P
+The glyph line segment data for each ASCII character may be
+accessed with
+.BR herhsey_font_glyph ().
+.P
+See the \fBhersheyfont.h\fP header file for the details of
+the structure members.
+
+.SH FONTS
+.P
+.BR hershey_font_load ()'s
+\fIfontname\fP parameter must be the name of a system-installed Hershey font.
+The Hershey fonts likely to be installed are:
+.PP
+.BR astrology ,
+.BR cursive ,
+.BR cyrillic ,
+.BR futural ,
+.BR futuram ,
+.BR gothgbt ,
+.BR gothgrt ,
+.BR gothiceng ,
+.BR gothicger ,
+.BR gothicita ,
+.BR gothitt ,
+.BR greekc ,
+.BR greek ,
+.BR greeks ,
+.BR japanese ,
+.BR markers ,
+.BR mathlow ,
+.BR mathupp ,
+.BR meteorology ,
+.BR music ,
+.BR rowmand ,
+.BR rowmans ,
+.BR rowmant ,
+.BR scriptc ,
+.BR scripts ,
+.BR symbolic ,
+.BR timesg ,
+.BR timesib ,
+.BR timesi ,
+.BR timesrb ,
+.BR timesr
+
+.P
+.BR herhsey_font_jhf_load ()'s
+\fIjhffile\fP parameter must be the filename of a Hershey font \fI.jhf\fP file.
+
+.SH ENVIRONMENT VARIABLE
+
+.TP
+.B HERSHEY_FONTS_DIR
+The directory in which
+.BR herhsey_font_load ()
+expects to find .jhf font files
+(The default directory is likely /usr/share/hershey-fonts/
+or /usr/local/share/hershey-fonts/ depending on the build configuration).
+
+.SH EXAMPLE
+.P
+.P
+See \fBhershey-font-example.c\fP for a complete working example program,
+including code to parse the glyph data.
+Likely location:
+.br
+.nf
+/usr/share/doc/libhersheyfont/examples/hershey-font-example.c
+.fi
+
+.SH AUTHOR
+.B libhersheyfont
+was written by Kamal Mostafa <kamal@whence.com>.
+
+.br
