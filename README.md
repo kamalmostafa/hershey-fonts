@@ -22,7 +22,7 @@ Hershey font files) along with various utility programs such as
 ### hershey-fonts-data
 
 The Hershey fonts are a collection of vector fonts developed circa 1967
-by Dr. A. V. Hershey.  Included are Latin, Greek, Cyrilic, Japanese, and
+by Dr. A. V. Hershey.  Included are Latin, Greek, Cyrillic, Japanese, and
 various symbol glyph sets encoded as .jhf format Hershey font files.
 The .jhf font files were converted from Hershey's original NTIS format
 files by James Hurt (see hershey-fonts.notes).
