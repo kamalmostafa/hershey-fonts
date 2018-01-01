@@ -147,7 +147,7 @@ main( int argc, char **argv )
 	struct hershey_glyph *hg = hershey_font_glyph(hf, c);
 
 	// check whether there actually is a glyph for this character
-	if ( hg->width == 0 )
+	if ( hg->npaths == 0 )
 	    continue;
 
 	// handle special placement for sample_sheet_mode

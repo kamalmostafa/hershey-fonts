@@ -51,7 +51,7 @@ main( int argc, char **argv )
 	// get the hershey_glyph for character c
 	// and check whether there actually is a glyph for this character
 	struct hershey_glyph *hg = hershey_font_glyph(hf, c);
-	if ( hg->width == 0 )
+	if ( hg->npaths == 0 )
 	    continue;
 
 	printf("# %c\n", c);
