@@ -46,6 +46,7 @@ main( int argc, char **argv )
 
     // dump all the glyph data
     int c, i;
+    int errs = 0;
     for ( c=0; c<256; c++ ) {
 	// get the hershey_glyph for ASCII character c
 	struct hershey_glyph *hg = hershey_font_glyph(hf, c);
@@ -59,6 +60,7 @@ main( int argc, char **argv )
 
 	// walk the paths-list for this glyph
 	struct hershey_path *hp;
+	int width_err = 0;
 	for ( hp=hg->paths; hp; hp=hp->next ) {
 	    // begin draw path
 	    printf("\t\tpath: nverts=%d\t", hp->nverts);
@@ -66,9 +68,26 @@ main( int argc, char **argv )
 		short x = hp->verts[i].x /* + x_render_pos */ ;
 		short y = hp->verts[i].y;
 		printf(" {%d,%d}", x, y);
+#if 0
+		// Check for out-of-bounds x positions (not actually invalid).
+		if ( x < 0 || x > hg->width ) {
+		    printf( "OUT!" );
+		}
+#endif
+		// Check for rare .jhf glitch case:
+		// Any glyph listed as zero-width (same left and right bound)
+		// should be only vertical lines such that all verts should
+		// have x == 0.
+		if ( hg->width == 0 && x != 0 )
+		    width_err++;
 	    }
 	    // end draw path
 	    printf("\n");
+	}
+	if ( width_err ) {
+	    printf("\t\tWARNING! '%c' glyph(%d) likely bogus width=%d!\n",
+		    c, c, hg->width);
+	    errs++;
 	}
 
 	// note: to render a string of character glyphs left-to-right,
@@ -80,5 +99,5 @@ main( int argc, char **argv )
     // destroy the hershey_font
     hershey_font_free(hf);
 
-    return 0;
+    return errs;
 }
